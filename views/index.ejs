@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>User Management</h1><br>
+        <table class="table border table-hover bg-light">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% users.forEach(user => { %>
+                    <tr>
+                        <td>
+                            <%= user.firstname %>
+                                <%= user.lastname %>
+                        </td>
+                        <td>
+                            <%= user.gender %>
+                        </td>
+                        <td>
+                            <%= user.email %>
+                        </td>
+                        <td>
+                            <%= user.city %>
+                        </td>
+                        <td>
+                            <!-- Edit Button -->
+                            <a href="/edit/<%= user._id %>" class="btn btn-primary btn-sm">Edit</a>
+                            <!-- Delete Button -->
+                            <form action="/delete/<%= user._id %>" method="post" style="display: inline;">
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <!-- Add New User Button -->
+        <a href="/new" class="btn btn-success">Add New User</a>
+    </div>
+
+    <!-- Bootstrap JS (Optional, if required) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
